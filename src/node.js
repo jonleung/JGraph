@@ -20,5 +20,9 @@ J.Node.prototype.isConnectedTo = function(node) {
 }
 
 J.Node.prototype.toString = function() {
-  return "<Node {0}: {1}".format(this.name, this.nodeList)
+  return StringUtils.format("<Node {0}: {1}", this.name, this.nodeList)
+}
+
+J.Node.prototype.connectedNodes = function() {
+  return this.adjacencyList;
 }

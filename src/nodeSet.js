@@ -2,19 +2,18 @@ var J = J || {}
 
 J.NodeSet = function() {
   this.hash = {};
-  this.keys = []
 }
 
 J.NodeSet.prototype.add = function(node) {
-  this.hash[node.id] = node;
+  this.hash[node] = node;
 }
 
 J.NodeSet.prototype.remove = function(node) {
-  this.hash[node.id] = undefined;
+  this.hash[node] = undefined;
 }
 
 J.NodeSet.prototype.contains = function(node) {
-  return this.hash[node.id] != undefined;
+  return this.hash[node] != undefined;
 }
 
 J.NodeSet.prototype.length = function() {
@@ -36,6 +35,8 @@ J.NodeSet.prototype.toArray = function() {
   return nodeArray;
 }
 
-J.NodeSet.prototype.iterable = function() {
-  return this.hash
+J.NodeSet.prototype.each = function(fn) {
+  for (var key in this.hash) {
+    fn( this.hash[key] );
+  }
 }

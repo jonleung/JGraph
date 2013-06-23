@@ -9,3 +9,13 @@ J.Graph.prototype.createNode = function(name) {
   this.nodeSet.add( newNode );
   return newNode;
 }
+
+J.Graph.prototype.nodes = function() {
+  return this.nodeSet.toArray();
+}
+
+J.Graph.prototype.each = function(fn) {
+  this.nodeSet.each(function(node){
+    fn(node);
+  });
+}

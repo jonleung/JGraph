@@ -2,12 +2,14 @@
 // http://stackoverflow.com/questions/12720771/adjacency-list-and-graph
 
 // Initialization
-var s = J.Graph.createNode();
-var a = J.Graph.createNode();
-var b = J.Graph.createNode();
-var c = J.Graph.createNode();
-var d = J.Graph.createNode();
-var e = J.Graph.createNode();
+var graph = new J.Graph();
+
+var s = graph.createNode();
+var a = graph.createNode();
+var b = graph.createNode();
+var c = graph.createNode();
+var d = graph.createNode();
+var e = graph.createNode();
 
 s.connect(a)
 s.connect(b)
@@ -17,7 +19,9 @@ c.connect(d)
 c.connect(e)
 b.connect(d)
 
-describe("The connected graph", function() {
+var nodes = [s, a, b, c, d, e]
+
+describe("The connected nodes", function() {
 
   it("s is connected t a", function() {
     expect(s.isConnectedTo(a)).toBe(true);
@@ -49,7 +53,7 @@ describe("The connected graph", function() {
 
 });
 
-describe("The UNconnected graph", function() {
+describe("The UNconnected nodes", function() {
 
   it("s is NOT connected to c", function() {
     expect(s.isConnectedTo(c)).toBe(false);
@@ -65,6 +69,20 @@ describe("The UNconnected graph", function() {
 
   it("d is NOT connected to a", function() {
     expect(d.isConnectedTo(a)).toBe(false);
+  });
+
+});
+
+describe("Iterating over the graph", function() {
+
+  it("The Graph contains all of the nodes", function(){
+    var numNodes = 0;
+    graph.each(function(node){
+      numNodes++;
+      expect(_.contains(nodes, node)).toBe(true)
+    });
+
+    expect(numNodes).toBe(nodes.length)
   });
 
 });
