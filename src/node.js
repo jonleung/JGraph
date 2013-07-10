@@ -1,28 +1,25 @@
-// http://stackoverflow.com/questions/12720771/adjacency-list-and-graph
-
 var J = J || {};
 
-J.Node = function(name) {
-  this.id = ++J.Node.nodeCounter;
-  this.name = name || "n{0}".format(this.id);
-  this.adjacencyList = new J.NodeSet();
-}
+J.Node = {
 
-J.Node.nodeCounter = 0
+  create: function(value) {
+    var self = J.Object.create(this);
+    self.value = value || "n"+self.getObjectId();
+    self.connectedNodes = J.NodeSet.create();
+    return self;
+  },
 
-J.Node.prototype.connect = function(node) {
-  this.adjacencyList.add(node);
-  node.adjacencyList.add(this)
-}
+  connectTo: function(node) {
+    this.connectedNodes.add(node)
+    return this;
+  },
 
-J.Node.prototype.isConnectedTo = function(node) {
-  return this.adjacencyList.contains(node)
-}
+  isConnectedTo: function(otherNode) {
+    return this.connectedNodes.contains(node);
+  },
 
-J.Node.prototype.toString = function() {
-  return StringUtils.format("<Node {0}: {1}", this.name, this.nodeList)
-}
+  toString: function() {
+    return StringUtils.format("<Node {0}: [{1}]>", this.value, this.connectedNodes);
+  }
 
-J.Node.prototype.connectedNodes = function() {
-  return this.adjacencyList;
-}
+};

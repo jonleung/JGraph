@@ -1,11 +1,9 @@
 // StringUtils
-var StringUtils = function() {
-
-}
+var StringUtils = function() {}
 
 StringUtils.format = function(string) {
   var args = arguments
-  return string.replace(/{%%(\d+)}/g, function(match, matchNumber) {
+  return string.replace(/{(\d+)}/g, function(match, matchNumber) {
     return args[parseInt(matchNumber)+1]
   })
 }

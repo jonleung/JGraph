@@ -1,21 +1,27 @@
-var J = J || {}
+var J = J || {};
 
-J.Graph = function() {
-  this.nodeSet = new J.NodeSet();
-}
+J.Graph = {
 
-J.Graph.prototype.createNode = function(name) {
-  var newNode = new J.Node();
-  this.nodeSet.add( newNode );
-  return newNode;
-}
+  create: function() {
+    var self = J.Object.create(this);
+    self.nodes = J.NodeSet.create()
+    return self;
+  },
 
-J.Graph.prototype.nodes = function() {
-  return this.nodeSet.toArray();
-}
+  createNode: function(value) {
+    var newNode = J.Node.create(value);
+    this.nodes.add(newNode);
+    return newNode;
+  },
 
-J.Graph.prototype.each = function(fn) {
-  this.nodeSet.each(function(node){
-    fn(node);
-  });
+  toNodeArray: function() {
+    return this.nodes.toArray();
+  },
+
+  each: function(fn) {
+    this.nodes.each(function(node){
+      fn(node);
+    });
+  }
+
 }

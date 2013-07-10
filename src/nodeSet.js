@@ -1,42 +1,77 @@
-var J = J || {}
+var J = J || {};
 
-J.NodeSet = function() {
-  this.hash = {};
-}
+J.NodeSet = {
 
-J.NodeSet.prototype.add = function(node) {
-  this.hash[node] = node;
-}
+  create: function() {
+    var self = J.Object.create(this);
+    self.dict = {};
+  },
 
-J.NodeSet.prototype.remove = function(node) {
-  this.hash[node] = undefined;
-}
+  add: function(node) {
+    dict[node.getObjectId] = node;
+  },
 
-J.NodeSet.prototype.contains = function(node) {
-  return this.hash[node] != undefined;
-}
+  remove: function(node) {
+    if (node.spawner === J.Node) {
+      
+    }
+    else if(node.constructor === String) {
+      return removeByValue(node);
+    }
+    else {
+      throw "Invalid Type"
+    }
+  },
 
-J.NodeSet.prototype.length = function() {
-  return Object.keys(this.hash).length;
-}
-J.NodeSet.prototype.size = function() {
-  return this.length;
-}
+  removeByNode: function(node) {
+    var node = dict[node.getObjectId]
+    delete dict[node.getObjectId]
+    return node;
+  },
 
-J.NodeSet.prototype.clear = function() {
-  this.hash = {}
-}
+  removeByValue: function(nodeValue) {
+    for (var key in dict) {
+      if (dict[key].value === node) {
+        return dict[key];
+      }
+    }
+    return null;
+  },
 
-J.NodeSet.prototype.toArray = function() {
-  var nodeArray = new Array();
-  for (var key in this.hash) {
-    nodeArray.push( this.hash[key] );
+  contains: function(node) {
+    return this.dict[node.getObjectId()] !== undefined;
+  },
+
+  length: function() {
+    return Object.keys(this.dict).length;
+  },
+
+  size: function() {
+    return this.length;
+  },
+
+  reset: function() {
+    this.dict = {};
+  },
+
+  each: function(fn) {
+    for (var key in this.dict) {
+      if (dict.hasOwnProperty(key)) {
+        fn( this.dict[this.key] )
+      }
+    }
+  },
+
+  toArray: function() {
+    var array = [];
+    this.each(function(node){
+      array.push(node);
+    });
+    return array;
+  },
+
+  toString: function() {
+    return this.toArray().toString();
   }
-  return nodeArray;
-}
 
-J.NodeSet.prototype.each = function(fn) {
-  for (var key in this.hash) {
-    fn( this.hash[key] );
-  }
-}
+};
