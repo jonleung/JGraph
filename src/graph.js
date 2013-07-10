@@ -4,7 +4,7 @@ J.Graph = {
 
   create: function() {
     var self = J.Object.create(this);
-    self.nodes = J.NodeSet.create()
+    self.nodes = J.NodeSet.create();
     return self;
   },
 

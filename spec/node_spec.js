@@ -15,3 +15,67 @@ describe("new J.Node", function() {
   });
 
 })
+
+describe("when connecting nodes", function() {
+
+  var graph;
+
+  var   a;
+  var b;
+  var   c;
+
+  describe("unconnected nodes are not connected", function() {
+
+    beforeEach(function() {
+      a = J.Node.create("a");
+      b = J.Node.create("b")
+    });
+
+    it("a should not be to b", function() {
+      expect( a.isConnectedTo(b) ).toBe(false);
+    });
+
+    it("b should not be connected to a", function() {
+      expect( b.isConnectedTo(a) ).toBe(false);
+    });
+
+  });
+
+  describe("when a is connected to b", function() {
+
+    beforeEach(function() {
+      a = J.Node.create("a");
+      b = J.Node.create("b")
+      a.connectTo(b);
+    });
+
+    it("a should be connected to b", function() {
+      debugger
+      expect( a.isConnectedTo(b) ).toBe(true);
+    });
+
+    it("b should be connected to a", function() {
+      expect( b.isConnectedTo(a) ).toBe(true);
+    });
+
+  });
+
+  describe("when b is connected to a", function() {
+
+    beforeEach(function() {
+      a = J.Node.create("a");
+      b = J.Node.create("b")
+      b.connectTo(a);
+    });
+
+    it("a should be connected to b", function() {
+      expect( a.isConnectedTo(b) ).toBe(true);
+    });
+
+    it("b should be connected to a", function() {
+      expect( b.isConnectedTo(a) ).toBe(true);
+    });
+
+  });
+
+});

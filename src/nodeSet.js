@@ -5,10 +5,11 @@ J.NodeSet = {
   create: function() {
     var self = J.Object.create(this);
     self.dict = {};
+    return self;
   },
 
   add: function(node) {
-    dict[node.getObjectId] = node;
+    this.dict[node.getObjectId()] = node;
   },
 
   remove: function(node) {
@@ -24,15 +25,15 @@ J.NodeSet = {
   },
 
   removeByNode: function(node) {
-    var node = dict[node.getObjectId]
-    delete dict[node.getObjectId]
+    var node = dict[node.getObjectId()]
+    delete dict[node.getObjectId()]
     return node;
   },
 
   removeByValue: function(nodeValue) {
     for (var key in dict) {
-      if (dict[key].value === node) {
-        return dict[key];
+      if (this.dict[key].value === node) {
+        return this.dict[key];
       }
     }
     return null;
@@ -56,7 +57,7 @@ J.NodeSet = {
 
   each: function(fn) {
     for (var key in this.dict) {
-      if (dict.hasOwnProperty(key)) {
+      if (this.dict.hasOwnProperty(key)) {
         fn( this.dict[this.key] )
       }
     }

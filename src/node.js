@@ -9,13 +9,14 @@ J.Node = {
     return self;
   },
 
-  connectTo: function(node) {
-    this.connectedNodes.add(node)
+  connectTo: function(otherNode) {
+    this.connectedNodes.add(otherNode);
+    otherNode.connectedNodes.add(this);
     return this;
   },
 
   isConnectedTo: function(otherNode) {
-    return this.connectedNodes.contains(node);
+    return this.connectedNodes.contains(otherNode);
   },
 
   toString: function() {
