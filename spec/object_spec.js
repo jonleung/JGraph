@@ -20,4 +20,9 @@ describe("J.Object", function() {
     expect( o1.equals(o2) ).toBe(false);
   });
 
+  it("Different objects should have different String representations", function() {
+    expect( o1.toString() === o2.toString() ).toBe(false);
+  });
+
+
 });

@@ -6,37 +6,21 @@ J.NodeSet = {
     var self = J.Object.create(this);
     self.dict = {};
     return self;
-  },
+  },  
 
   add: function(node) {
     this.dict[node.getObjectId()] = node;
-  },
-
-  remove: function(node) {
-    if (node.spawner === J.Node) {
-      
-    }
-    else if(node.constructor === String) {
-      return removeByValue(node);
-    }
-    else {
-      throw "Invalid Type"
-    }
-  },
-
-  removeByNode: function(node) {
-    var node = dict[node.getObjectId()]
-    delete dict[node.getObjectId()]
     return node;
   },
 
-  removeByValue: function(nodeValue) {
-    for (var key in dict) {
-      if (this.dict[key].value === node) {
-        return this.dict[key];
-      }
-    }
-    return null;
+  remove: function(node) {
+    return this.removeByNode(node);
+  },
+
+  removeByNode: function(node) {
+    var nodeToBeDeleted = this.dict[node.getObjectId()]
+    delete this.dict[node.getObjectId()]
+    return nodeToBeDeleted;
   },
 
   contains: function(node) {
@@ -48,19 +32,29 @@ J.NodeSet = {
   },
 
   size: function() {
-    return this.length;
+    return this.length();
+  },
+
+  isEmpty: function() {
+    return this.length() == 0;
+  },
+
+  clear: function() {
+    this.dict = {};
+    return this;
   },
 
   reset: function() {
-    this.dict = {};
+    return this.clear();
   },
 
   each: function(fn) {
     for (var key in this.dict) {
       if (this.dict.hasOwnProperty(key)) {
-        fn( this.dict[this.key] )
+        fn( this.dict[key] )
       }
     }
+    return this;
   },
 
   toArray: function() {
@@ -72,7 +66,7 @@ J.NodeSet = {
   },
 
   toString: function() {
-    return this.toArray().toString();
+    return this.wrappedToString( this.toArray.toString() );
   }
 
 };

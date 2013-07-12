@@ -1,6 +1,6 @@
 var J = J || {};
 
-J.Node = {
+J.Node = J.Object.extend({
 
   create: function(value) {
     var self = J.Object.create(this);
@@ -20,7 +20,8 @@ J.Node = {
   },
 
   toString: function() {
-    return StringUtils.format("<Node {0}: [{1}]>", this.value, this.connectedNodes);
+    debugger
+    return this.wrappedToString( StringUtils.format("value: {0}: => {1}>", this.value, this.connectedNodes) );
   }
 
-};
+});

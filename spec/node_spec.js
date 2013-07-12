@@ -28,7 +28,7 @@ describe("when connecting nodes", function() {
 
     beforeEach(function() {
       a = J.Node.create("a");
-      b = J.Node.create("b")
+        b = J.Node.create("b")
     });
 
     it("a should not be to b", function() {
@@ -50,7 +50,6 @@ describe("when connecting nodes", function() {
     });
 
     it("a should be connected to b", function() {
-      debugger
       expect( a.isConnectedTo(b) ).toBe(true);
     });
 
