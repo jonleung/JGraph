@@ -100,7 +100,8 @@ describe("Graph", function(){
     var searchResults;
 
     beforeEach(function(){
-      searchResults = graph.findByValue(s, "e", "BFS");
+      debugger
+      searchResults = graph.findValueByBfs(s, "e");
     });
 
     it("for node with value 'e' starting on s should find the 2 'e' nodes", function(){
@@ -132,7 +133,7 @@ describe("Graph", function(){
     var searchResults;
 
     beforeEach(function(){
-      searchResults = graph.findByValue(s, "e", "dfs");
+      searchResults = graph.findValueByDfs(s, "e", "dfs");
       debugger
     });
 

@@ -1,12 +1,12 @@
 var J = J || {};
 
-J.Node = J.Object.extend({
+J.Node = {
 
   create: function(value) {
-    var self = J.Object.create(this);
-    self.value = value || "n"+self.getObjectId();
-    self.connectedNodes = J.NodeSet.create();
-    return self;
+    var self = J.Object.create();
+    self.value = value || "n"+self.getObjectId(),
+    self.connectedNodes = J.NodeSet.create()
+    return this.extend(self)
   },
 
   connectTo: function(otherNode) {
@@ -24,4 +24,4 @@ J.Node = J.Object.extend({
     return this.wrappedToString( StringUtils.format("value: {0}: => {1}>", this.value, this.connectedNodes) );
   }
 
-});
+};

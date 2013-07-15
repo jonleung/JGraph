@@ -1,9 +1,10 @@
 var J = J || {};
 
-J.Graph = J.NodeSet.extend({
+J.Graph = {
 
   create: function() {
-    var self = J.NodeSet.create.call(this);
+    debugger
+    var self = this.extend(J.NodeSet.create())
     J.SearchBlueprint.call(self);
     return self;
   },
@@ -14,4 +15,4 @@ J.Graph = J.NodeSet.extend({
     return newNode;
   }
 
-});
+};

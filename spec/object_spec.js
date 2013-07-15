@@ -4,7 +4,7 @@ describe("J.Object", function() {
     o = J.Object.create();
     o1 = J.Object.create();
     o2 = J.Object.create();
-    
+    node = J.Object.create();
   });
 
   it("Objects should have a retrievable id via 'getObjectId()'", function() {
@@ -16,12 +16,20 @@ describe("J.Object", function() {
     expect( o1.equals(o1) ).toBe(true);
   });
 
+  it("Different objects should have different object ids", function() {
+    expect( o1.getObjectId() === o2.getObjectId() ).toBe(false)
+  });
+
   it("Different objects should NOT be 'equal'", function() {
     expect( o1.equals(o2) ).toBe(false);
   });
 
   it("Different objects should have different String representations", function() {
     expect( o1.toString() === o2.toString() ).toBe(false);
+  });
+
+  it("node has object id", function() {
+    expect( !isNaN(node.getObjectId()) ).toBe(true);
   });
 
 

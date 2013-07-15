@@ -3,9 +3,9 @@ var J = J || {};
 J.NodeSet = {
 
   create: function() {
-    var self = J.Object.create(this);
-    self.dict = {};
-    return self;
+    return this.extend(J.Object.create(), {
+      dict: {}
+    });
   },  
 
   add: function(node) {

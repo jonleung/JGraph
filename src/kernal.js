@@ -1,18 +1,18 @@
-Object.prototype.extend = function() {
-  var object = Object.create(this);
+Object.prototype.extend = function () {
+    var hasOwnProperty = Object.hasOwnProperty;
+    var object = Object.create(this);
+    var length = arguments.length;
+    var index = length;
 
-  for (var i=0, len=arguments.length; i<len; i++) {
-    var extension = arguments[i];
+    while (index) {
+        var extension = arguments[length - (index--)];
 
-    for (var property in extension) {
-      if (
-        extension.hasOwnProperty(property) ||
-        typeof object[property] === "undefined"
-      ) {
-        object[property] = extension[property];
-      }
+        for (var property in extension)
+            if (hasOwnProperty.call(extension, property) ||
+                typeof object[property] === "undefined")
+                    object[property] = extension[property];
     }
-  }
 
-  return object;
-}
+
+    return object;
+};

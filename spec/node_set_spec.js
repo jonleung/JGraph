@@ -1,3 +1,15 @@
+/*
+  #TODO
+
+  Create a helper methods that do a bunch 
+  Start a basic case, create a basic one don't do nested dseribe
+
+  TODO:
+    write Spike first
+    Then Write Tests
+    Then write the call
+*/
+
 describe("NodeSetSpec", function() {
 
   var nodeSet;

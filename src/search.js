@@ -1,22 +1,16 @@
 J = J || {};
 
+J.SearchResults = {
+
+  create: function() {
+    var self = Object.create(Array.prototype);
+    self.levels = [];
+    return self;
+  },
+
+};
+
 J.SearchBlueprint = function() {
-
-  this.findByValue = function(startingNode, soughtValue, strategy) {
-    strategy = strategy.toLowerCase();
-
-    if(strategy === "bfs") {
-      var algo = this.findValueByBfs;
-    }
-    else if(strategy === "dfs") {
-      var algo = this.findValueByDfs;
-    }
-    else {
-      throw( StringUtils.format("{0} is an invalid findByValue format!", strategy) );
-    }
-
-    return algo.call(this, startingNode, soughtValue);
-  };
 
   var matches = function(node, matchParameter) {
     if (typeof(a) === "function") {
@@ -27,7 +21,7 @@ J.SearchBlueprint = function() {
     }
   };
 
-  ensureValidStartingNode = function(startingNode) {
+  var ensureValidStartingNode = function(startingNode) {
     if (this.contains(startingNode) === false) {
       throw("The specified starting node does not exist in this Graph: " + this.toString() );
     }
@@ -117,13 +111,3 @@ J.SearchBlueprint = function() {
   }
 
 };
-
-J.SearchResults = Array.extend({
-
-  create: function() {
-    var self = Object.create(Array.prototype);
-    self.levels = [];
-    return self;
-  },
-
-});
