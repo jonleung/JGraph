@@ -1,7 +1,10 @@
 describe("new J.Node", function() {
 
+  var graph;
+
   beforeEach(function() {
-    newNode = J.Node.create("newNode");
+    graph = J.Graph.create();
+    newNode = graph.createNode("newNode");
   });
 
   it("a spawned node with a designated name should have a retrievable name", function() {
@@ -9,8 +12,9 @@ describe("new J.Node", function() {
   });
 
   it("Nodes without values set should have uniquely set values", function(){
-    n1 = J.Node.create();
-    n2 = J.Node.create();
+    graph = J.Graph.create();
+    n1 = graph.createNode();
+    n2 = graph.createNode();
     expect( n1.value ).toNotBe( n2.value );
   });
 
@@ -27,8 +31,9 @@ describe("when connecting nodes", function() {
   describe("unconnected nodes are not connected", function() {
 
     beforeEach(function() {
-      a = J.Node.create("a");
-        b = J.Node.create("b")
+      graph = J.Graph.create();
+      a = graph.createNode("a");
+      b = graph.createNode("b")
     });
 
     it("a should not be to b", function() {
@@ -44,12 +49,14 @@ describe("when connecting nodes", function() {
   describe("when a is connected to b", function() {
 
     beforeEach(function() {
-      a = J.Node.create("a");
-      b = J.Node.create("b")
+      graph = J.Graph.create();
+      a = graph.createNode("a");
+      b = graph.createNode("b")
       a.connectTo(b);
     });
 
     it("a should be connected to b", function() {
+      debugger
       expect( a.isConnectedTo(b) ).toBe(true);
     });
 
@@ -62,8 +69,9 @@ describe("when connecting nodes", function() {
   describe("when b is connected to a", function() {
 
     beforeEach(function() {
-      a = J.Node.create("a");
-      b = J.Node.create("b")
+        graph = J.Graph.create();
+      a = graph.createNode("a");
+      b = graph.createNode("b")
       b.connectTo(a);
     });
 

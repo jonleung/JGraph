@@ -10,8 +10,13 @@ J.Node = {
   },
 
   connectTo: function(otherNode) {
+    debugger
     this.connectedNodes.add(otherNode);
-    otherNode.connectedNodes.add(this);
+    debugger
+    var isUndirected = this.graph.isDirected === false
+    if ( isUndirected ) {
+      otherNode.connectedNodes.add(this);  
+    }
     return this;
   },
 
@@ -20,7 +25,6 @@ J.Node = {
   },
 
   toString: function() {
-    debugger
     return this.wrappedToString( StringUtils.format("value: {0}: => {1}>", this.value, this.connectedNodes) );
   }
 

@@ -159,11 +159,41 @@ describe("Graph", function(){
       expect( _.contains(levels[4], ePrime) ).toBe(true);
     });
 
+  });
+
+  describe("that are undirected", function(){
+    var graph = J.Graph.create()
+    var a = graph.createNode("a");
+    var b = graph.createNode("b");
+    a.connectTo(b);
+
+    it("'a' should be connected to 'b'", function() {
+      expect( a.isConnectedTo(b) ).toBe(true);  
+    })
+
+    it("'b' should be connected to 'a'", function() {
+      expect( b.isConnectedTo(a) ).toBe(true);  
+    })
+
+  });
+
+
+  describe("that are directed", function(){
+    var graph = J.DirectedGraph.create();
+    var a = graph.createNode("a");
+    var b = graph.createNode("b");
+    debugger
+    a.connectTo(b);
 
 
 
-  })
+    it("'a' should be connected to 'b'", function() {
+      expect( a.isConnectedTo(b) ).toBe(true);  
+    })
 
-
+    it("'b' should NOT be connected to 'a'", function() {
+      expect( b.isConnectedTo(a) ).toBe(false);  
+    })
+  });
 
 })
