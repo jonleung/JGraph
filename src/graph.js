@@ -5,7 +5,9 @@ J.Graph = {
   create: function() {
     var self = this.extend(J.NodeSet.create())
     self.isDirected = false;
-    J.SearchBlueprint.call(self);
+    
+    J.BfsBlueprints.call(self);
+    J.DfsBlueprints.call(self);
     return self;
   },
 

@@ -6,7 +6,7 @@ J.NodeSet = {
     return this.extend(J.Object.create(), {
       dict: {}
     });
-  },  
+  },
 
   add: function(node) {
     this.dict[node.getObjectId()] = node;
@@ -48,10 +48,19 @@ J.NodeSet = {
     return this.clear();
   },
 
-  each: function(fn) {
+  each: function(context, fn) {
+    if(arguments.size < 2) {
+      throw("You must provide a context and a function!")
+    }
     for (var key in this.dict) {
       if (this.dict.hasOwnProperty(key)) {
-        fn( this.dict[key] )
+        var node = this.dict[key];
+        if (context !== undefined) {
+          fn.call(context, node);
+        }
+        else {
+          fn( node );
+        }
       }
     }
     return this;
@@ -59,7 +68,7 @@ J.NodeSet = {
 
   toArray: function() {
     var array = [];
-    this.each(function(node){
+    this.each(this, function(node){
       array.push(node);
     });
     return array;

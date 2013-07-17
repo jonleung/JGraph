@@ -56,7 +56,6 @@ describe("when connecting nodes", function() {
     });
 
     it("a should be connected to b", function() {
-      debugger
       expect( a.isConnectedTo(b) ).toBe(true);
     });
 

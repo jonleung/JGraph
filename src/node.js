@@ -10,14 +10,17 @@ J.Node = {
   },
 
   connectTo: function(otherNode) {
-    debugger
     this.connectedNodes.add(otherNode);
-    debugger
-    var isUndirected = this.graph.isDirected === false
-    if ( isUndirected ) {
-      otherNode.connectedNodes.add(this);  
+    if (this.graph === undefined) {
+      otherNode.connectedNodes.add(this);
     }
-    return this;
+    else {
+      var isUndirected = this.graph.isDirected === false
+      if ( isUndirected ) {
+        otherNode.connectedNodes.add(this);  
+      }
+      return this;
+    }
   },
 
   isConnectedTo: function(otherNode) {

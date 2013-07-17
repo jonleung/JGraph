@@ -74,9 +74,9 @@ describe("NodeSetSpec", function() {
 
     it("nodeSet.each should show all the elements", function(){
       var numNodes = 0;
-      nodeSet.each(function(node){
+      nodeSet.each(this, function(node){
         numNodes++;
-            expect( _.contains(nodeArray, node) ).toBe(true);
+        expect( _.contains(nodeArray, node) ).toBe(true);
       });
 
       expect( numNodes ).toBe( nodeArray.length );
